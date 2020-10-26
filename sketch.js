@@ -64,7 +64,7 @@ function addWord() {
   let possibleDirection = [-3,3];
   const orizzontalDirection = random(possibleDirection);
   const verticalDirection = random(possibleDirection);
-  const aNewWord = new Word(random(0,width), random(0,height), orizzontalDirection, verticalDirection);
+  const aNewWord = new Word(random(100,width-100), random(100,height-100), orizzontalDirection, verticalDirection);
   myPersonalWords.push(aNewWord);
 }
 
