@@ -1,12 +1,43 @@
+let pavaImage;
+let boccaImage;
+let mySong;
+let analyzer;
+
 function preload(){
-  // put preload code here
+  pavaImage = loadImage("./assets/images/pava.png");
+  boccaImage = loadImage("./assets/images/bocca.png");
+  mySong = loadSound("./assets/sounds/buongiorno.mp3");
 }
 
 function setup() {
   createCanvas(windowWidth,windowHeight)
-  // put setup code here
+
+  analyzer = new p5.Amplitude();
+  analyzer.setInput(mySong);
+
+  //mySong.play();
 }
 
 function draw() {
-  // put drawing code here
+  var volume = 0;
+
+  background(0);
+
+  volume = analyzer.getLevel();
+  volume = map(volume,0,1,0,150);
+
+  imageMode(CENTER);
+  image(pavaImage, width/2,height/2, pavaImage.width, pavaImage.height);
+  image(boccaImage, width/2,(height/2+volume), boccaImage.width, boccaImage.height);
+
+  console.log(volume);
+}
+
+function mouseClicked() {
+    if (mySong.isPlaying() == false) {
+      mySong.play();
+    }
+    else {
+      mySong.stop();
+    }
 }
